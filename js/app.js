@@ -49,6 +49,8 @@ const TRANSLATIONS = {
     "validationBirthFuture": "Birth date cannot be in the future.",
     "validationBirthDate": "Enter a valid date in YYYY-MM-DD format. The year must be between 1916 and the current year, and the date must not be in the future.",
     "validationDocumentNumber": "Use 3 to 20 uppercase Latin letters or digits, without spaces or special characters.",
+    "validationExpiryPast": "The document validity date cannot be earlier than today.",
+    "validationExpiryYearMax": "The document validity year cannot be later than 3000.",
     "validationExpiry": "Enter a valid date in YYYY-MM-DD format. The document validity date cannot be earlier than today or later than year 3000.",
     "documentTypes": {
       "": "Select",
@@ -113,6 +115,8 @@ const TRANSLATIONS = {
     "validationName": "Kasutage ainult ladina tähti A-Z. Sidekriips (-), ülakoma (') ja tühikud on lubatud. Kirillitsa, diakriitikud ja muud sümbolid ei ole lubatud.",
     "validationDateFormat": "Kasutage vormingut YYYY-MM-DD.",
     "validationCalendarDate": "Sisestage olemasolev kalendrikuupäev.",
+    "validationBirthYearRange": "Sünniaasta peab olema vahemikus 1916 kuni käesolev aasta.",
+    "validationBirthFuture": "Sünnikuupäev ei tohi olla tulevikus.",
     "validationBirthDate": "Sisestage korrektne kuupäev vormingus YYYY-MM-DD. Aasta peab olema vahemikus 1916 kuni käesoleva aastani ning kuupäev ei tohi olla tulevikus.",
     "validationDocumentNumber": "Kasutage 3 kuni 20 suurt ladina tähte või numbrit ilma tühikute ja erimärkideta.",
     "validationExpiryPast": "Dokumendi kehtivuse kuupäev ei tohi olla varasem kui tänane kuupäev.",
@@ -180,6 +184,8 @@ const TRANSLATIONS = {
     "validationName": "Используйте только латинские буквы A-Z. Допускаются дефис (-), апостроф (') и пробелы. Кириллица, диакритика и другие символы не допускаются.",
     "validationDateFormat": "Используйте формат YYYY-MM-DD.",
     "validationCalendarDate": "Введите реальную календарную дату.",
+    "validationBirthYearRange": "Год рождения должен быть в диапазоне от 1916 до текущего года.",
+    "validationBirthFuture": "Дата рождения не может быть в будущем.",
     "validationBirthDate": "Введите корректную дату в формате YYYY-MM-DD. Год рождения должен быть от 1916 до текущего года, а дата не может быть в будущем.",
     "validationDocumentNumber": "Используйте от 3 до 20 заглавных латинских букв или цифр без пробелов и спецсимволов.",
     "validationExpiryPast": "Срок действия документа не может быть меньше текущей даты.",
@@ -583,64 +589,6 @@ const PERMIT_TYPE_CODES = ['', 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', 'ENTRY_PER
 const REQUIRED_FIELDS = ['firstName', 'surname', 'birthDate', 'citizenship', 'documentType', 'documentNumber', 'issuingCountry', 'documentExpiry'];
 const localeMap = { en: 'en-GB', et: 'et-EE', ru: 'ru-RU', lv: 'lv-LV', lt: 'lt-LT', pl: 'pl-PL', fi: 'fi-FI', uk: 'uk-UA' };
 
-const ENTRY_PERMIT_TYPE_OPTIONS_BY_LANG = {
-  en: [
-    { value: '', label: 'Select' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Single / double entry visa' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Multiple entry visa' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'EU / Schengen citizen' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Residence card' }
-  ],
-  et: [
-    { value: '', label: 'Vali' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Ühe- või kahekordne viisa' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Mitmekordse sisenemise viisa' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'EL või Schengeni viisaruumi kodanik' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Elamisluba' }
-  ],
-  ru: [
-    { value: '', label: 'Выберите' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Однократная / двукратная виза' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Многократная виза' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'Гражданин ЕС / Шенгенской зоны' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Вид на жительство' }
-  ],
-  lv: [
-    { value: '', label: 'Izvēlieties' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Vienreizējā / divreizējā ieceļošanas vīza' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Daudzkārtējā ieceļošanas vīza' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'ES / Šengenas zonas pilsonis' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Uzturēšanās atļauja' }
-  ],
-  lt: [
-    { value: '', label: 'Pasirinkite' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Vienkartinė / dukartinė viza' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Daugkartinė viza' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'ES / Šengeno erdvės pilietis' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Leidimas gyventi' }
-  ],
-  pl: [
-    { value: '', label: 'Wybierz' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Wiza jednokrotnego / dwukrotnego wjazdu' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Wiza wielokrotnego wjazdu' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'Obywatel UE / strefy Schengen' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Karta pobytu' }
-  ],
-  fi: [
-    { value: '', label: 'Valitse' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Kerta- / kaksikertaviisumi' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Monikertaviisumi' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'EU- / Schengen-alueen kansalainen' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Oleskelulupakortti' }
-  ],
-  uk: [
-    { value: '', label: 'Оберіть' },
-    { value: 'ENTRY_PERMIT_TYPE.SINGLE_ENTRY_VISA', label: 'Одноразова / дворазова віза' },
-    { value: 'ENTRY_PERMIT_TYPE.MULTIPLE_ENTRY_VISA', label: 'Багаторазова віза' },
-    { value: 'ENTRY_PERMIT_TYPE.EU_SCHENGEN_CITIZEN', label: 'Громадянин ЄС / Шенгенської зони' },
-    { value: 'ENTRY_PERMIT_TYPE.RESIDENCE_CARD', label: 'Посвідка на проживання' }
-  ]
-};
 
 const form = document.getElementById('passengerForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -762,7 +710,7 @@ function populateSelects() {
   populateCountrySelect(document.getElementById('citizenship'));
   populateCountrySelect(document.getElementById('issuingCountry'));
   populateMappedSelect(document.getElementById('documentType'), DOCUMENT_TYPE_CODES, 'documentTypes');
-  populatePermitTypeSelect(document.getElementById('permitType'));
+  populateMappedSelect(document.getElementById('permitType'), PERMIT_TYPE_CODES, 'permitTypes');
 }
 
 function getDisplayNames() {
@@ -815,20 +763,6 @@ function populateMappedSelect(select, codes, dictionaryKey) {
 }
 
 
-function populatePermitTypeSelect(select) {
-  const currentValue = select.value;
-  const options = ENTRY_PERMIT_TYPE_OPTIONS_BY_LANG[currentLang] || ENTRY_PERMIT_TYPE_OPTIONS_BY_LANG.en;
-  select.innerHTML = '';
-
-  options.forEach((item) => {
-    const option = document.createElement('option');
-    option.value = item.value;
-    option.textContent = item.label;
-    select.appendChild(option);
-  });
-
-  select.value = currentValue;
-}
 
 function prefillForm() {
   Object.entries(MOCK_DATA.passenger).forEach(([key, value]) => {
