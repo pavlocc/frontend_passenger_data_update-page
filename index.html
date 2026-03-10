@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EES Passenger Data Update</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand-link" href="#" aria-label="Lux Express">
+        <img src="images/luxexpress_logo.svg" alt="Lux Express" class="brand-logo" />
+      </a>
+
+      <div class="header-actions">
+        <label for="langSelect" class="sr-only">Language</label>
+        <select id="langSelect" class="lang-select" aria-label="Language selector">
+          <option value="en">EN</option>
+          <option value="et">ET</option>
+          <option value="ru">RU</option>
+          <option value="lv">LV</option>
+          <option value="lt">LT</option>
+          <option value="pl">PL</option>
+          <option value="fi">FI</option>
+          <option value="uk">UK</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <nav class="progress-nav" aria-label="Progress">
+    <div class="progress-inner">
+      <span class="progress-step is-active" id="stepUpdate" data-i18n="stepPassengerData">Passenger data update</span>
+      <span class="progress-divider">›</span>
+      <span class="progress-step" id="stepSubmitted" data-i18n="stepSubmitted">Submitted</span>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="page-grid">
+      <div class="main-column">
+        <div class="notice notice-info" role="status">
+          <div class="notice-badge" data-i18n="importantBadge">Important</div>
+          <div class="notice-content">
+            <h1 class="page-title" data-i18n="title">Update passenger data for EES check</h1>
+            <p class="page-intro" id="introText"></p>
+          </div>
+        </div>
+
+        <div class="notice notice-warning hidden" id="formWarning" role="alert">
+          <strong data-i18n="warningTitle">Please check the form.</strong>
+          <span data-i18n="warningText">Some required fields are missing or contain invalid values.</span>
+        </div>
+
+        <div class="notice notice-success hidden" id="successNotice" role="status">
+          <strong data-i18n="successTitle">Data submitted successfully.</strong>
+          <span data-i18n="successText">Your passenger data has been recorded. Further editing is disabled.</span>
+        </div>
+
+        <section class="card form-card">
+          <div class="card-header">
+            <div>
+              <h2 data-i18n="formTitle">Passenger details</h2>
+              <p class="muted" data-i18n="formSubtitle">Please review and complete all required information below.</p>
+            </div>
+            <span class="pill" data-i18n="requiredBadge">Required for EES</span>
+          </div>
+
+          <form id="passengerForm" novalidate>
+            <div class="form-grid two-cols">
+              <div class="form-field">
+                <label for="firstName"><span data-i18n="firstName">First name</span><span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" autocomplete="given-name" maxlength="40" />
+                <p class="field-hint" data-i18n="nameHint">Use Latin letters A-Z only. Hyphen (-), apostrophe (') and spaces are allowed. Cyrillic, diacritics and other symbols are not accepted.</p>
+                <p class="field-error" id="firstNameError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="surname"><span data-i18n="surname">Surname</span><span class="required">*</span></label>
+                <input type="text" id="surname" name="surname" autocomplete="family-name" maxlength="40" />
+                <p class="field-hint" data-i18n="nameHint">Use Latin letters A-Z only. Hyphen (-), apostrophe (') and spaces are allowed. Cyrillic, diacritics and other symbols are not accepted.</p>
+                <p class="field-error" id="surnameError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="birthDate"><span data-i18n="birthDate">Birth date</span><span class="required">*</span></label>
+                <input type="text" id="birthDate" name="birthDate" inputmode="numeric" maxlength="10" placeholder="YYYY-MM-DD" />
+                <p class="field-error" id="birthDateError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="citizenship"><span data-i18n="citizenship">Citizenship</span><span class="required">*</span></label>
+                <select id="citizenship" name="citizenship"></select>
+                <p class="field-error" id="citizenshipError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="documentType"><span data-i18n="documentType">Travel document type</span><span class="required">*</span></label>
+                <select id="documentType" name="documentType"></select>
+                <p class="field-error" id="documentTypeError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="documentNumber"><span data-i18n="documentNumber">Travel document number</span><span class="required">*</span></label>
+                <input type="text" id="documentNumber" name="documentNumber" autocomplete="off" maxlength="20" />
+                <p class="field-hint" data-i18n="documentHint">Use uppercase Latin letters A-Z and digits 0-9 only. No spaces or special symbols are allowed.</p>
+                <p class="field-error" id="documentNumberError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="issuingCountry"><span data-i18n="issuingCountry">Travel document issued by country</span><span class="required">*</span></label>
+                <select id="issuingCountry" name="issuingCountry"></select>
+                <p class="field-error" id="issuingCountryError"></p>
+              </div>
+
+              <div class="form-field">
+                <label for="documentExpiry"><span data-i18n="documentExpiry">Travel document end of validity</span><span class="required">*</span></label>
+                <input type="text" id="documentExpiry" name="documentExpiry" inputmode="numeric" maxlength="10" placeholder="YYYY-MM-DD" />
+                <p class="field-error" id="documentExpiryError"></p>
+              </div>
+
+              <div class="form-field full-width">
+                <label for="permitType"><span data-i18n="permitType">Permit type</span></label>
+                <select id="permitType" name="permitType"></select>
+                <p class="field-hint" data-i18n="permitHint">Leave empty if not applicable.</p>
+                <p class="field-error" id="permitTypeError"></p>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <div class="form-legend">
+                <span class="required">*</span>
+                <span data-i18n="mandatoryLegend">Mandatory fields</span>
+              </div>
+              <button type="submit" class="primary-button is-disabled" id="submitBtn" aria-disabled="true" data-i18n="submit">Submit</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="card summary-card">
+          <h3 data-i18n="tripData">Trip data</h3>
+          <div class="summary-block">
+            <span class="summary-label" data-i18n="departureDateTime">Departure date and time</span>
+            <span class="summary-value" id="tripDateTime">—</span>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label" data-i18n="route">Route</span>
+            <span class="summary-value" id="tripRoute">—</span>
+          </div>
+          <div class="summary-block">
+            <span class="summary-label" data-i18n="ticketNumber">Ticket number</span>
+            <span class="summary-value mono" id="tripTicketNumber">—</span>
+          </div>
+        </section>
+
+        <section class="card details-card">
+          <h3 data-i18n="statusTitle">Submission status</h3>
+          <div class="status-line">
+            <span class="status-dot status-pending" id="statusDot"></span>
+            <span id="statusText" data-i18n="statusPending">Waiting for complete passenger data</span>
+          </div>
+          <ul class="status-list">
+            <li data-i18n="statusInfo1">Fill in all required fields.</li>
+            <li data-i18n="statusInfo2">Check that document details are accurate.</li>
+            <li data-i18n="statusInfo3">After successful submission, editing will be disabled.</li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
