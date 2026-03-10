@@ -2,7 +2,7 @@
   font-family: 'Manrope';
   src: local('Manrope Regular'),
        local('Manrope-Regular'),
-       url('fonts/Manrope-Regular.woff2') format('woff2');
+       url('../fonts/Manrope-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -12,7 +12,7 @@
   font-family: 'Manrope';
   src: local('Manrope Medium'),
        local('Manrope-Medium'),
-       url('fonts/Manrope-Medium.woff2') format('woff2');
+       url('../fonts/Manrope-Medium.woff2') format('woff2');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -22,7 +22,7 @@
   font-family: 'Manrope';
   src: local('Manrope SemiBold'),
        local('Manrope-SemiBold'),
-       url('fonts/Manrope-SemiBold.woff2') format('woff2');
+       url('../fonts/Manrope-SemiBold.woff2') format('woff2');
   font-style: normal;
   font-weight: 600;
   font-display: swap;
