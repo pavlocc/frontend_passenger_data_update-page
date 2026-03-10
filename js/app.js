@@ -566,8 +566,8 @@ const MOCK_DATA = {
     ticketNumber: '260305321711'
   },
   passenger: {
-    firstName: 'JOHN',
-    surname: 'SMITH',
+    firstName: 'ALEKSANDR',
+    surname: 'PETROV',
     birthDate: '1980-06-01',
     citizenship: 'RUS',
     documentType: 'DOCUMENT_TYPE.FOREIGN_PASSPORT',
