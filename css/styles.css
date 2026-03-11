@@ -2,7 +2,7 @@
   font-family: 'Manrope';
   src: local('Manrope Regular'),
        local('Manrope-Regular'),
-       url('../fonts/Manrope-Regular.woff2') format('woff2');
+       url('fonts/Manrope-Regular.woff2') format('woff2');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -12,7 +12,7 @@
   font-family: 'Manrope';
   src: local('Manrope Medium'),
        local('Manrope-Medium'),
-       url('../fonts/Manrope-Medium.woff2') format('woff2');
+       url('fonts/Manrope-Medium.woff2') format('woff2');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -22,7 +22,7 @@
   font-family: 'Manrope';
   src: local('Manrope SemiBold'),
        local('Manrope-SemiBold'),
-       url('../fonts/Manrope-SemiBold.woff2') format('woff2');
+       url('fonts/Manrope-SemiBold.woff2') format('woff2');
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -415,12 +415,23 @@ img { max-width: 100%; display: block; }
   .form-field select { min-height: 60px; font-size: 17px; }
   .form-footer { flex-direction: column; align-items: stretch; }
   .primary-button { width: 100%; min-width: 0; }
-  .side-column { grid-template-columns: 1fr; }
+
+  .main-column { display: contents; }
+
+  .notice-info { order: 1; }
+  .side-column { order: 2; grid-template-columns: 1fr; }
+  .notice-warning,
+  .notice-success { order: 3; }
+  .form-card { order: 4; }
+
   .progress-step { font-size: 15px; }
   .page-title { font-size: 24px; }
 }
 
 @media (max-width: 480px) {
+  .side-column { order: 2; }
+  .form-card { order: 4; }
+
   .page-shell { padding-top: 18px; }
   .summary-card h3,
   .details-card h3 { font-size: 20px; }
