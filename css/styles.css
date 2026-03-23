@@ -469,10 +469,22 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 768px) {
+  .notice {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .notice-side {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .notice-badge {
+    min-height: 34px;
+    padding: 0 14px;
+    font-size: 13px;
   }
 
   .notice-icon {
