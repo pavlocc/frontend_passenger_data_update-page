@@ -42,12 +42,30 @@
     <section class="page-grid">
       <div class="main-column">
         <div class="notice notice-info" role="status">
-          <div class="notice-badge" data-i18n="importantBadge">Important</div>
-          <div class="notice-content">
-            <h1 class="page-title" data-i18n="title">Update passenger data for EES check</h1>
-            <p class="page-intro" id="introText"></p>
-          </div>
-        </div>
+  <div class="notice-side">
+    <div class="notice-badge" data-i18n="importantBadge">Important</div>
+    <div class="notice-icon" aria-hidden="true">!</div>
+  </div>
+
+  <div class="notice-content">
+    <h1 class="page-title" data-i18n="title">Update passenger data for Entry/Exit System (EES) check</h1>
+    <p class="page-intro" id="introText"></p>
+
+    <p class="page-more-info">
+      <span data-i18n="moreInfoText">
+        More information can be found on the official website of the Entry/Exit system:
+      </span>
+      <a
+        href="https://travel-europe.europa.eu/ees"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-i18n="moreInfoLink"
+      >
+        https://travel-europe.europa.eu/ees
+      </a>
+    </p>
+  </div>
+</div>
 
         <div class="notice notice-warning hidden" id="formWarning" role="alert">
           <strong data-i18n="warningTitle">Please check the form.</strong>
