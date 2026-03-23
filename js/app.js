@@ -2,7 +2,9 @@ const TRANSLATIONS = {
   "en": {
     "pageTitle": "EES Passenger Data Update",
     "importantBadge": "Important",
-    "title": "Update passenger data for EES check",
+    "title": "Update passenger data for Entry/Exit System (EES) check",
+    "moreInfoText": "More information can be found on the official website of the Entry/Exit system:",
+    "moreInfoLink": "https://travel-europe.europa.eu/ees",
     "intro": "From 10 April 2026 all passengers of non EU-citizens entering European Union for a short stay are required to provide their travel document data and other personal data via transport operator that is used to enter EU. Please complete your details in the form below in order to comply with the data submission requirements. Please be informed that providing accurate and full data is mandatory. Not providing your data or providing false data may result in ticket cancellation and not being allowed to enter European Union.",
     "stepPassengerData": "Passenger data update",
     "stepSubmitted": "Submitted",
