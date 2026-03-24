@@ -173,10 +173,16 @@ img { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0 14px;
   min-height: 38px;
-  padding: 0 16px;
   border-radius: 999px;
-  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .notice-side {
